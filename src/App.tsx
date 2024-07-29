@@ -1,14 +1,15 @@
 import { ChevronsDown, MouseIcon } from 'lucide-react'
-import { PropsWithChildren, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import AnimatedCursor from 'react-animated-cursor'
 import { CustomDock } from './components/dock'
+import { Experience, timelineData } from './components/experience'
+import Footer from './components/footer'
 import BoxReveal from './components/magicui/box-reveal'
 import TextRevealByWord from './components/magicui/text-reveal'
 import { Nav } from './components/nav'
 import { Projects } from './components/projects'
 import { ThemeProvider } from './components/theme-provider'
-import { Experience, timelineData } from './components/experience'
-import Footer from './components/footer'
+import { cn } from './lib/utils'
 
 export default function App() {
   const [scrollYPosition, setScrollYPosition] = useState(0)
@@ -40,7 +41,7 @@ export default function App() {
             <Projects />
           </Section>
 
-          <SectionTitle>experience</SectionTitle>
+          <SectionTitle className='mt-10'>experience</SectionTitle>
           <Section>
             <Experience items={timelineData} />
           </Section>
@@ -56,17 +57,22 @@ export default function App() {
   )
 }
 
-function Section({ children }: PropsWithChildren) {
+interface SectionProps {
+  children: ReactNode
+  className?: string
+}
+
+function Section({ children, className }: SectionProps) {
   return (
     <BoxReveal duration={0.5}>
-      <section>{children}</section>
+      <section className={cn(className)}>{children}</section>
     </BoxReveal>
   )
 }
-function SectionTitle({ children }: PropsWithChildren) {
+function SectionTitle({ children, className }: SectionProps) {
   return (
     <BoxReveal duration={0.5}>
-      <p className='text-4xl font-semibold'>
+      <p className={cn(className, 'text-4xl font-semibold')}>
         <span className='text-primary'>//</span> {children}
       </p>
     </BoxReveal>
