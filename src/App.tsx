@@ -7,6 +7,8 @@ import TextRevealByWord from './components/magicui/text-reveal'
 import { Nav } from './components/nav'
 import { Projects } from './components/projects'
 import { ThemeProvider } from './components/theme-provider'
+import { Experience, timelineData } from './components/experience'
+import Footer from './components/footer'
 
 export default function App() {
   const [scrollYPosition, setScrollYPosition] = useState(0)
@@ -28,17 +30,27 @@ export default function App() {
       <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
         <ScrollDownIcon />
         {scrollYPosition !== 0 && <Nav />}
-        <main className='max-w-screen-md mx-auto px-2'>
+        <main className='max-w-screen-md mx-auto px-2 space-y-10'>
           <section>
             <TextRevealByWord text="I'm Euger Bonete Jr. a web developer based in the Philippines. I mainly work with javascript / typescript and frameworks like NextJS." />
           </section>
+
           <SectionTitle>projects</SectionTitle>
           <Section>
             <Projects />
           </Section>
+
+          <SectionTitle>experience</SectionTitle>
+          <Section>
+            <Experience items={timelineData} />
+          </Section>
         </main>
+        <Footer />
+
+        {/* others */}
         <AnimatedCursor outerSize={10} color='255, 165, 0' />
         <CustomDock />
+        {/* others */}
       </ThemeProvider>
     </>
   )
@@ -54,7 +66,7 @@ function Section({ children }: PropsWithChildren) {
 function SectionTitle({ children }: PropsWithChildren) {
   return (
     <BoxReveal duration={0.5}>
-      <p className='text-4xl font-semibold mb-10'>
+      <p className='text-4xl font-semibold'>
         <span className='text-primary'>//</span> {children}
       </p>
     </BoxReveal>
