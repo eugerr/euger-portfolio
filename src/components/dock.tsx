@@ -1,7 +1,4 @@
-import React from 'react'
-import { CalendarIcon, HomeIcon, MailIcon, PencilIcon } from 'lucide-react'
-import { ThemeProvider } from '@/components/theme-provider'
-import { cn } from '@/lib/utils'
+import { Dock, DockIcon } from '@/components/magicui/dock'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -10,7 +7,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { Dock, DockIcon } from '@/components/magicui/dock'
+import { cn } from '@/lib/utils'
+import { CalendarIcon, HomeIcon, MailIcon, PencilIcon } from 'lucide-react'
+import React from 'react'
 import { ModeToggle } from './mode-toggle'
 
 export type IconProps = React.HTMLAttributes<SVGElement>
@@ -92,65 +91,63 @@ const DATA = {
 
 export function CustomDock() {
   return (
-    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <div className='fixed bottom-2 flex w-full flex-col items-center justify-center overflow-hidden'>
-        <TooltipProvider>
-          <Dock direction='middle'>
-            {DATA.navbar.map((item) => (
-              <DockIcon key={item.label}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <a
-                      href={item.href}
-                      className={cn(
-                        buttonVariants({ variant: 'ghost', size: 'icon' }),
-                        'size-12 rounded-full'
-                      )}
-                    >
-                      <item.icon className='size-4' />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{item.label}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </DockIcon>
-            ))}
-            <Separator orientation='vertical' className='h-full' />
-            {Object.entries(DATA.contact.social).map(([name, social]) => (
-              <DockIcon key={name}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <a
-                      href={social.url}
-                      className={cn(
-                        buttonVariants({ variant: 'ghost', size: 'icon' }),
-                        'size-12 rounded-full'
-                      )}
-                    >
-                      <social.icon className='size-4' />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{name}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </DockIcon>
-            ))}
-            <Separator orientation='vertical' className='h-full py-2' />
-            <DockIcon>
+    <div className='fixed z-10 bottom-2 flex w-full flex-col items-center justify-center overflow-hidden'>
+      <TooltipProvider>
+        <Dock direction='middle'>
+          {DATA.navbar.map((item) => (
+            <DockIcon key={item.label}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <ModeToggle className='rounded-full' />
+                  <a
+                    href={item.href}
+                    className={cn(
+                      buttonVariants({ variant: 'ghost', size: 'icon' }),
+                      'size-12 rounded-full'
+                    )}
+                  >
+                    <item.icon className='size-4' />
+                  </a>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Theme</p>
+                  <p>{item.label}</p>
                 </TooltipContent>
               </Tooltip>
             </DockIcon>
-          </Dock>
-        </TooltipProvider>
-      </div>
-    </ThemeProvider>
+          ))}
+          <Separator orientation='vertical' className='h-full' />
+          {Object.entries(DATA.contact.social).map(([name, social]) => (
+            <DockIcon key={name}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href={social.url}
+                    className={cn(
+                      buttonVariants({ variant: 'ghost', size: 'icon' }),
+                      'size-12 rounded-full'
+                    )}
+                  >
+                    <social.icon className='size-4' />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{name}</p>
+                </TooltipContent>
+              </Tooltip>
+            </DockIcon>
+          ))}
+          <Separator orientation='vertical' className='h-full py-2' />
+          <DockIcon>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <ModeToggle className='rounded-full' />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Theme</p>
+              </TooltipContent>
+            </Tooltip>
+          </DockIcon>
+        </Dock>
+      </TooltipProvider>
+    </div>
   )
 }

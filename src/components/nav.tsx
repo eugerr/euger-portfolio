@@ -7,8 +7,8 @@ export function Nav() {
     <header className='py-2 px-2 md:px-4 fixed top-0 flex items-center gap-2 w-full bg-background z-20 border-b'>
       <div className='flex-1'>
         <BoxReveal duration={0.5}>
-          <a href='/' className='text-lg font-bold'>
-            Euger<span className='text-[#5046e6]'>.</span>
+          <a href='/' className='text-2xl font-semibold'>
+            Euger<span className='text-primary'>.</span>
           </a>
         </BoxReveal>
       </div>

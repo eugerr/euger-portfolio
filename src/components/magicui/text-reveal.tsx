@@ -45,7 +45,7 @@ export const TextRevealByWord: FC<TextRevealByWordProps> = ({
                   <p
                     className={cn(
                       targetWords.includes(word) &&
-                        'underline decoration-primary text-primary-foreground'
+                        'underline decoration-primary'
                     )}
                   >
                     {word}
