@@ -10,6 +10,7 @@ import { Nav } from './components/nav'
 import { Projects } from './components/projects'
 import { ThemeProvider } from './components/theme-provider'
 import { cn } from './lib/utils'
+import { isMobile } from 'react-device-detect'
 
 export default function App() {
   const [scrollYPosition, setScrollYPosition] = useState(0)
@@ -49,7 +50,7 @@ export default function App() {
         <Footer />
 
         {/* others */}
-        <AnimatedCursor outerSize={10} color='255, 165, 0' />
+        {!isMobile && <AnimatedCursor outerSize={10} color='255, 165, 0' />}
         <CustomDock />
         {/* others */}
       </ThemeProvider>
