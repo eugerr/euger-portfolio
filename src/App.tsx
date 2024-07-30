@@ -11,6 +11,7 @@ import { Projects } from './components/projects'
 import { ThemeProvider } from './components/theme-provider'
 import { cn } from './lib/utils'
 import { isMobile } from 'react-device-detect'
+import { ScrollProgress } from './components/ui/scroll-progress'
 
 export default function App() {
   const [scrollYPosition, setScrollYPosition] = useState(0)
@@ -50,7 +51,10 @@ export default function App() {
         <Footer />
 
         {/* others */}
-        {!isMobile && <AnimatedCursor outerSize={10} color='255, 165, 0' />}
+        {!isMobile && (
+          <AnimatedCursor showSystemCursor outerSize={10} color='255, 165, 0' />
+        )}
+        <ScrollProgress className='top-[50px]' />
         <CustomDock />
         {/* others */}
       </ThemeProvider>
